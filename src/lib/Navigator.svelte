@@ -1,10 +1,16 @@
+<script>
+     import { link } from "svelte-routing";
+</script>
+
 <nav class="navigator">
     <div class="logo">
-        HOME
+        <a class="link" use:link href="/"> HOME </a>
     </div>
     <div class="right">
         <ul>
-            <li>ABOUT</li>
+            <li>
+                <a class="link" use:link href="/about"> ABOUT </a>
+            </li>
             <li>PEOPLE</li>
         </ul>
     </div>
@@ -15,7 +21,6 @@
         position: fixed;
         width: 100%;
         height: 120px;
-        color: rgb(226, 26, 0);
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -40,5 +45,10 @@
 
     li {
         margin-right: 20px;
+    }
+
+    .link {
+        color: rgb(226, 26, 0);
+        text-decoration: none;
     }
 </style>

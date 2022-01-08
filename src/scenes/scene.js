@@ -2,8 +2,10 @@ import * as THREE from 'three';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+// @ts-ignore
 const loader = new THREE.FontLoader();
 loader.load( 'fonts/Zen_Dots_Regular.json', function ( font ) {
+	// @ts-ignore
 	const text3D = new THREE.TextGeometry( 'JAAG', {
 		font: font,
 		size: 80,

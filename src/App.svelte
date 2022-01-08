@@ -1,18 +1,22 @@
 <script>
   import './$layout.svelte'
-  import { onMount } from 'svelte';
+  
   import Navigator from './lib/Navigator.svelte';
-  import { createScene } from "./scenes/scene";
-  let el;
-  onMount(() => {
-    createScene(el)
-  });
+  import About from './pages/About.svelte';
+  import Home from './pages/Home.svelte';
+  
+  import { Router, Route } from "svelte-routing";
+
+  export let url = "/";
+
 </script>
 
 <main>
-  <Navigator />
-  <h1>JAAG</h1>
-  <canvas bind:this={el}></canvas>
+  <Router url="{url}">
+    <Navigator />
+    <Route path="/about" component="{About}" />
+    <Route path="/" component="{Home}" />
+  </Router>
 </main>
 
 <style>
@@ -24,31 +28,5 @@
   main {
     text-align: center;
     margin: 0 auto;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4rem;
-    font-weight: 100;
-    line-height: 1.1;
-    margin: 1rem auto;
-    max-width: 14rem;
-  }
-
-  p {
-    max-width: 14rem;
-    margin: 1rem auto;
-    line-height: 1.35;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      max-width: none;
-    }
-
-    p {
-      max-width: none;
-    }
   }
 </style>
