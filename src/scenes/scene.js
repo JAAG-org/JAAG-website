@@ -37,12 +37,6 @@ const animate = () => {
 	renderer.render(scene, camera);
 };
 
-const resize = () => {
-	renderer.setSize(window.innerWidth, window.innerHeight - 10)
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
-};
-
 const onMouseMove = (event) => {
 	event.preventDefault();
   	const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
@@ -57,13 +51,18 @@ const onMouseMove = (event) => {
 }
 
 export const createScene = (el) => {
-	
 	renderer = new THREE.WebGLRenderer({ antialias: true, canvas: el });
 	renderer.setClearColor('black', 1);
 	renderer.outputEncoding = THREE.sRGBEncoding;
 	resize();
 	animate();
 }
+
+const resize = () => {
+	renderer.setSize(window.innerWidth, window.innerHeight - 10)
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+};
 
 window.addEventListener('resize', resize);
 window.addEventListener('mousemove', onMouseMove, false);
