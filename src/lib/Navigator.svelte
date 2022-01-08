@@ -11,7 +11,12 @@
             <li>
                 <a class="link" use:link href="/about"> ABOUT </a>
             </li>
-            <li>PEOPLE</li>
+            <li>
+                <a class="link" use:link href="/works"> WORKS </a>
+            </li>
+            <li>
+                <a class="link" use:link href="/events"> EVENTS </a>
+            </li>
         </ul>
     </div>
 </nav>
