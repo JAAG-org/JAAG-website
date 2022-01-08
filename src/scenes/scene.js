@@ -8,7 +8,6 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.load(
 	'model/JAAG.glb',
 	(gltf) => {
-		gltf.scene.scale.set(0.1, 0.1, 0.01)
 		scene.add(gltf.scene)
 	},
 	(progess) => {
@@ -20,16 +19,16 @@ let renderer;
 let pointLight
 
 pointLight = new THREE.PointLight(0xe21a00, 0.5)
-pointLight.position.set(0.001, 2, 100);
+pointLight.position.set(10, 10, 10);
 scene.add(pointLight)
 
 const directionalLight = new THREE.DirectionalLight(0xe21a00, 0.3)
-directionalLight.position.set(0.01, 0.2, 1);
+directionalLight.position.set(10, 10, 10);
 scene.add(directionalLight)
 
-camera.position.x = 0.5
-camera.position.y = 2.3
-camera.position.z = 1
+camera.position.x = 4
+camera.position.y = 22
+camera.position.z = 10
 scene.add(camera)
 
 
@@ -55,11 +54,13 @@ const onMouseMove = (event) => {
 	const pos = camera.position.clone().add(dir.multiplyScalar(distance));
 
 	pointLight.position.copy(new THREE.Vector3(pos.x, pos.y, pos.z + 2));
-	directionalLight.position.copy(new THREE.Vector3(pos.x, pos.y, pos.z + 2));
 }
 
 export const createScene = (el) => {
+	
 	renderer = new THREE.WebGLRenderer({ antialias: true, canvas: el });
+	renderer.setClearColor('black', 1);
+	renderer.outputEncoding = THREE.sRGBEncoding;
 	resize();
 	animate();
 }
