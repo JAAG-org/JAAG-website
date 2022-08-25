@@ -1,5 +1,9 @@
 import * as THREE from 'three';
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+
+gsap.registerPlugin(ScrollTrigger)
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -22,7 +26,7 @@ pointLight = new THREE.PointLight(0xe21a00, 0.5)
 pointLight.position.set(10, 10, 10);
 scene.add(pointLight)
 
-const directionalLight = new THREE.DirectionalLight(0xe21a00, 0.3)
+const directionalLight = new THREE.DirectionalLight(0xe21a00, 3.0)
 directionalLight.position.set(10, 10, 10);
 scene.add(directionalLight)
 
@@ -39,8 +43,8 @@ const animate = () => {
 
 const onMouseMove = (event) => {
 	event.preventDefault();
-  	const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-  	const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+	const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+	const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
 	const vector = new THREE.Vector3(mouseX, mouseY, 0.5);
 	vector.unproject(camera);
 	const dir = vector.sub(camera.position).normalize();
@@ -59,10 +63,22 @@ export const createScene = (el) => {
 }
 
 const resize = () => {
-	renderer.setSize(window.innerWidth, window.innerHeight - 10)
-	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
+	camera.aspect = window.innerWidth / window.innerHeight;
+	renderer.setSize(window.innerWidth, window.innerHeight)
 };
+
+gsap.to(camera.position, {
+	z: 15,
+	scrollTrigger: {
+		trigger: ".scene1",
+		endTrigger: ".scene2",
+		immediateRender: false,
+		scrub: 0.3,
+		// start: "top top",
+		end: "bottom top"
+	}
+})
 
 window.addEventListener('resize', resize);
 window.addEventListener('mousemove', onMouseMove, false);
