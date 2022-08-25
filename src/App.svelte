@@ -2,7 +2,6 @@
   import './$layout.svelte'
   
   import Navigator from './lib/Navigator.svelte';
-  import About from './pages/About.svelte';
   import Home from './pages/Home.svelte';
   
   import { Router, Route } from "svelte-routing";
@@ -14,7 +13,6 @@
 <main>
   <Router url="{url}">
     <Navigator />
-    <Route path="/about" component="{About}" />
     <Route path="/" component="{Home}" />
   </Router>
 </main>
