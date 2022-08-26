@@ -26,20 +26,15 @@ pointLight = new THREE.PointLight(0xe21a00, 0.5)
 pointLight.position.set(10, 10, 10);
 scene.add(pointLight)
 
-const directionalLight = new THREE.DirectionalLight(0xe21a00, 3.0)
+const directionalLight = new THREE.DirectionalLight(0xe21a00, 5.0)
 directionalLight.position.set(10, 10, 10);
 scene.add(directionalLight)
 
 camera.position.x = 4
 camera.position.y = 22
-camera.position.z = 10
+camera.position.z = 12
 scene.add(camera)
-
-
-const animate = () => {
-	requestAnimationFrame(animate);
-	renderer.render(scene, camera);
-};
+scene.rotation.set(0, 0, 0)
 
 const onMouseMove = (event) => {
 	event.preventDefault();
@@ -53,6 +48,11 @@ const onMouseMove = (event) => {
 
 	pointLight.position.copy(new THREE.Vector3(pos.x, pos.y, pos.z + 2));
 }
+
+const animate = () => {
+	requestAnimationFrame(animate);
+	renderer.render(scene, camera);
+};
 
 export const createScene = (el) => {
 	renderer = new THREE.WebGLRenderer({ antialias: true, canvas: el });
@@ -68,14 +68,13 @@ const resize = () => {
 	renderer.setSize(window.innerWidth, window.innerHeight)
 };
 
-gsap.to(camera.position, {
-	z: 15,
+gsap.to(camera.rotation, {
+	y: (Math.PI * 4) + Math.PI/10,
 	scrollTrigger: {
 		trigger: ".scene1",
 		endTrigger: ".scene2",
 		immediateRender: false,
-		scrub: 0.3,
-		// start: "top top",
+		scrub: 0.9,
 		end: "bottom top"
 	}
 })

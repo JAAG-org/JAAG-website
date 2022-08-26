@@ -4,18 +4,18 @@
 
 <nav class="navigator">
     <div class="logo">
-        <a class="link" use:link href="/"> HOME </a>
+        <a class="link" use:link href="/"> Home </a>
     </div>
     <div class="right">
         <ul>
             <li>
-                <a class="link" use:link href="/about"> ABOUT </a>
+                <a class="link" use:link href="/about"> About </a>
             </li>
             <li>
-                <a class="link" use:link href="/works"> WORKS </a>
+                <a class="link" use:link href="/works"> Works </a>
             </li>
             <li>
-                <a class="link" use:link href="/events"> EVENTS </a>
+                <a class="link" use:link href="/events"> Events </a>
             </li>
         </ul>
     </div>
@@ -49,11 +49,13 @@
     }
 
     li {
-        margin-right: 20px;
+        margin-right: 40px;
     }
 
     .link {
-        color: rgb(226, 26, 0);
+        color: rgb(255, 255, 255);
         text-decoration: none;
+        font-size: 14px;
+        font-weight: 200;
     }
 </style>
